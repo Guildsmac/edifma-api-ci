@@ -25,11 +25,9 @@ class Migration_create_table_protected_e_book extends CI_Migration {
             ),
             'usuario_idusuario'      => array(
                 'type'   => 'INT(11)',
-                'unique' => TRUE,
             ),
             'e_book_ide_book'   => array(
                 'type' => 'INT(11)',
-                'unique' => TRUE,
             ),
             'e_book_path'  => array(
                 'type' => 'VARCHAR(255)',
@@ -43,10 +41,11 @@ class Migration_create_table_protected_e_book extends CI_Migration {
             )
         );
         $this->dbforge->add_field($fields);
-        $this->dbforge->add_field('CONSTRAINT FOREIGN KEY (usuario_idusuario) references usuario(idusuario)');
-        $this->dbforge->add_field('CONSTRAINT FOREIGN KEY (e_book_ide_book) references e_book(ide_book)');
         $this->dbforge->add_key('id_protected_e_book', TRUE);
         $this->dbforge->create_table($this->table, TRUE);
+        $this->load->helper('db_helper');
+        $this->db->query(add_foreign_key($this->table, 'usuario_idusuario', 'usuario(idusuario)'));
+        $this->db->query(add_foreign_key($this->table, 'e_book_ide_book', 'e_book(ide_book)'));
 
         /*
         $this->load->helper('date');

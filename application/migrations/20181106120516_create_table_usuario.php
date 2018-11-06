@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Migration_create_table_usuario extends CI_Migration {
 
 
-    protected $table = 'UsuarioModel';
+    protected $table = 'usuario';
 
 
     public function up()

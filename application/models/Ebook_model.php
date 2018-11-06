@@ -1,19 +1,17 @@
 <?php
 
-class Usuario_model extends CI_Model{
-    public $nome;
-    public $username;
-    public $email;
-    public $cpf;
-    public $password;
+class Ebook_model extends CI_Model{
+    public $book_path;
+    public $opf_path;
+    public $icon_img_path;
     public $created_at;
     public $updated_at;
 
-    public function get_users($columns = array(), $conditions = array(), $order = ''){
+    public function get_ebooks($columns = array(), $conditions = array(), $order = ''){
         $this->db->where($conditions); // e.g: array('idusuario <=' => 20, 'nome =' => john, ...);
         $this->db->select($columns); // e.g: array('idusuario', 'nome', 'username');
         $this->db->order_by($order); // e.g: 'idusuario DESC';
-        return $this->db->get('usuario')->result();
+        return $this->db->get('e_book')->result();
 
     }
 
@@ -26,7 +24,7 @@ class Usuario_model extends CI_Model{
         $this->created_at = Date('YmdGis');
         $this->updated_at = Date('YmdGis');
 
-        if($this->db->insert('usuario', $this))
+        if($this->db->insert('e_book', $this))
             return true;
         return false;
 

@@ -98,7 +98,7 @@ class Usuario extends REST_Controller
             $this->response(array('message' => 'Preencha todos os dados'), REST_Controller::HTTP_BAD_REQUEST);
         $this->set_response(array('message' => 'Usuário criado'), REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
     }
-
+/*
     public function users_delete()
     {
         $id = (int)$this->get('id');
@@ -113,5 +113,5 @@ class Usuario extends REST_Controller
             'message' => 'Deleted the resource'
         );
         $this->set_response($message, REST_Controller::HTTP_NO_CONTENT); // NO_CONTENT (204) being the HTTP response code
-    }
+    }*/
 }
