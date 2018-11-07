@@ -54,7 +54,7 @@ class Migration_create_table_usuario extends CI_Migration {
         $this->dbforge->add_key('idusuario', TRUE);
         $this->dbforge->create_table($this->table, TRUE);
 
-        $this->load->helper('date');
+        /*$this->load->helper('date');
         for($i=1; $i<=100; $i++) {
             $this->db->insert($this->table, array(
                 'email'      => "user-{$i}@mail.com",
@@ -65,7 +65,7 @@ class Migration_create_table_usuario extends CI_Migration {
                 'created_at' => Date('YmdGis'),
                 'updated_at' => Date('YmdGis')
             ));
-        }
+        }*/
     }
 
 
