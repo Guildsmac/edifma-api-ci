@@ -15,12 +15,10 @@ class Ebook_model extends CI_Model{
 
     }
 
-    public function insert_user($data){
-        $this->nome = $data->post('nome');
-        $this->username = $data->post('username');
-        $this->email = $data->post('email');
-        $this->cpf = $data->post('cpf');
-        $this->password = password_hash($data->post('password'), PASSWORD_BCRYPT);
+    public function insert_ebook($data){
+        $this->book_path = $data->post('book_path');
+        $this->opf_path = $data->post('opf_path');
+        $this->icon_img_path = $data->post('icon_img_path');
         $this->created_at = Date('YmdGis');
         $this->updated_at = Date('YmdGis');
 

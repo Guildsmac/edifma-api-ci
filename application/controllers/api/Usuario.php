@@ -24,11 +24,6 @@ class Usuario extends REST_Controller
         $this->methods['usuarios_delete']['limit'] = 50; // 50 requests per hour per user/key
     }
 
-    private function deal_error($error)
-    {
-        $this->response($error, REST_Controller::HTTP_BAD_REQUEST);
-    }
-
     public function usuarios_get()
     {
         // Users from a data store e.g. database
@@ -49,7 +44,7 @@ class Usuario extends REST_Controller
                 // Set the response and exit
                 $this->response(array(
                     'status' => FALSE,
-                    'message' => 'No users were found'
+                    'message' => 'Nenhum usuário encontrado'
                 ), REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
             }
         }
@@ -75,7 +70,7 @@ class Usuario extends REST_Controller
         } else {
             $this->set_response(array(
                 'status' => FALSE,
-                'message' => 'User could not be found'
+                'message' => 'Usuário não pôde ser achado'
             ), REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
         }
     }
@@ -83,20 +78,23 @@ class Usuario extends REST_Controller
     public function usuarios_post()
     {
         // $this->some_model->update_user( ... );
-
+        $success = false;
         if ($this->post('nome') && $this->post('username') &&
             $this->post('email') && $this->post('cpf') &&
             $this->post('password')) {
             $this->load->model('usuario_model', '', true);
             $this->load->helper('email');
             if (valid_email($this->post('email')))
-                $this->usuario_model->insert_user($this);
+                $success = $this->usuario_model->insert_user($this);
 
             else
                 $this->response(array('message' => 'E-Mail Inválido'), REST_Controller::HTTP_BAD_REQUEST);
         } else
             $this->response(array('message' => 'Preencha todos os dados'), REST_Controller::HTTP_BAD_REQUEST);
-        $this->set_response(array('message' => 'Usuário criado'), REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+        if($success)
+            $this->set_response(array('message' => 'Usuário criado'), REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+        else
+            $this->set_response(array('status' => FALSE, 'message' => 'Usuário não pôde ser criado'));
     }
 /*
     public function users_delete()
