@@ -40,7 +40,7 @@ class Migration_create_table_usuario extends CI_Migration {
                 'type'   => 'VARCHAR(255)',
                 'unique' => TRUE,
             ),
-            'password'   => array(
+            'senha'   => array(
                 'type' => 'VARCHAR(64)',
             ),
             'created_at' => array(

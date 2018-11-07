@@ -5,7 +5,7 @@ class Usuario_model extends CI_Model{
     public $username;
     public $email;
     public $cpf;
-    public $password;
+    public $senha;
     public $created_at;
     public $updated_at;
 
@@ -19,13 +19,12 @@ class Usuario_model extends CI_Model{
 
     public function insert_user($data){
         $this->nome = $data->post('nome');
-        $this->username = $data->post('username');
-        $this->email = $data->post('email');
-        $this->cpf = $data->post('cpf');
-        $this->password = password_hash($data->post('password'), PASSWORD_BCRYPT);
+        $this->username = strtolower($data->post('username'));
+        $this->email = strtolower($data->post('email'));
+        $this->cpf = strtolower($data->post('cpf'));
+        $this->senha = password_hash($data->post('password'), PASSWORD_BCRYPT);
         $this->created_at = Date('YmdGis');
         $this->updated_at = Date('YmdGis');
-
         if($this->db->insert('usuario', $this))
             return true;
         return false;

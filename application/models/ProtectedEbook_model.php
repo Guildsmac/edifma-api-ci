@@ -27,7 +27,6 @@ class ProtectedEbook_model extends CI_Model {
         $this->e_book_path = $data->post('e_book_path');
         $this->created_at = Date('YmdGis');
         $this->updated_at = Date('YmdGis');
-        echo "<br><br><br>". $this->db->insert('protected_e_book', $this) . "<br><br><br>";
         if($this->db->insert('protected_e_book', $this))
             return true;
         return false;

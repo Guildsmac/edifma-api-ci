@@ -24,9 +24,10 @@ class Usuario extends REST_Controller
         $this->methods['usuarios_delete']['limit'] = 50; // 50 requests per hour per user/key
     }
 
+
+
     public function usuarios_get()
     {
-        // Users from a data store e.g. database
         $this->load->database();
         $this->load->model('usuario_model', '', true);
 
@@ -77,7 +78,7 @@ class Usuario extends REST_Controller
 
     public function usuarios_post()
     {
-        // $this->some_model->update_user( ... );
+        $this->load->database();
         $success = false;
         if ($this->post('nome') && $this->post('username') &&
             $this->post('email') && $this->post('cpf') &&
