@@ -53,7 +53,7 @@ class ProtectedEbook extends REST_Controller
             ), REST_Controller::HTTP_NOT_FOUND);
     }
 
-    public function protected_ebooks_post(){
+    public function protected_ebooks_post() {
         $success = false;
         if($this->post('usuario_idusuario') && $this->post('e_book_ide_book') && $this->post('e_book_path')){
             $this->load->model('protectedebook_model', '', true);
@@ -62,7 +62,7 @@ class ProtectedEbook extends REST_Controller
         }else
             $this->response(array('status' => FALSE,'message' => 'Preencha todos os dados'), REST_Controller::HTTP_BAD_REQUEST);
         if($success)
-            $this->set_response(array('message' => 'Livro protegido não pôde ser criado'));
+            $this->set_response(array('message' => 'Livro protegido criado'));
         else
             $this->set_response(array('status' => FALSE, 'message' => 'Livro protegido não pôde ser criado'));
 

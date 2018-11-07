@@ -23,6 +23,14 @@ class Migrate extends CI_Controller
             show_error($this->migration->error_string());
 
         }
+        if($this->migration->version('20181107121607') === FALSE){
+            show_error($this->migration->error_string());
+
+        }
+        if($this->migration->version('20181107121650') === FALSE){
+            show_error($this->migration->error_string());
+
+        }
     }
 
 }

@@ -62,3 +62,5 @@ $route['translate_uri_dashes'] = TRUE;
 //$route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
 
 $route['api/usuario/usuarios/(:num)'] = 'api/usuario/usuarios/id/$1';
+$route['api/ebook/ebooks/(:num)'] = 'api/ebook/ebooks/id/$1';
+$route['api/protectedebook/protected_ebooks/(:num)'] = 'api/protectedebook/protected_ebooks/id/$1';
