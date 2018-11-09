@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'mysql995.umbler.com',
+	'username' => 'guildsmac',
+	'password' => '-o5hh2nQ?nZ',
 	'database' => 'edifma_ebook',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
