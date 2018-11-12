@@ -30,10 +30,42 @@ class Auth extends REST_Controller{
 
     }
 
+    public function authusername_post(){
+        $this->load->database();
+        $this->load->model('usuario_model', '', true);
+        $username = strtolower($this->post('username'));
+        $isEmail = filter_var($username, FILTER_VALIDATE_EMAIL) !== false;
+        if(empty($username))
+            $this->response(array(
+                'status' => FALSE,
+                'message' => 'Preencha o campo de usuário/email'
+            ), REST_Controller::HTTP_NOT_FOUND);
+        if($isEmail){
+            $data = $this->usuario_model->get_users(array('nome', 'idusuario'), array('email =' => $username));
+            if(empty($data) | is_null($data))
+                $this->response(array(
+                    'status' => FALSE,
+                    'message' => 'Email informado é inválido.'
+                ), REST_Controller::HTTP_NOT_FOUND);
+        }else{
+            $data = $this->usuario_model->get_users(array('nome', 'idusuario'), array('username =' => $username));
+            if(empty($data) | is_null($data))
+                $this->response(array(
+                    'status' => FALSE,
+                    'message' => 'Nome de usuário informado é inválido.'
+                ), REST_Controller::HTTP_NOT_FOUND);
+        }
+        $this->response(array(
+            'status' => TRUE,
+            'message' => 'Acesso liberado',
+            'payload' => $data
+        ), REST_Controller::HTTP_OK);
+    }
+
     public function index_post(){
         $this->load->helper('email');
         $username = strtolower($this->post('username'));
-        $password = strtolower($this->post('password'));
+        $password = $this->post('password');
         $isEmail = filter_var($username, FILTER_VALIDATE_EMAIL) !== false;
         $data = null;
         if(empty($username) && empty($password))

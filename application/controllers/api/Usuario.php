@@ -89,13 +89,22 @@ class Usuario extends REST_Controller
                 $success = $this->usuario_model->insert_user($this);
 
             else
-                $this->response(array('message' => 'E-Mail Inválido'), REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(array('status' => FALSE, 'message' => array('main' => 'Erro ao criar seu usuário', 'email' => 'E-Mail Inválido')), REST_Controller::HTTP_BAD_REQUEST);
         } else
-            $this->response(array('message' => 'Preencha todos os dados'), REST_Controller::HTTP_BAD_REQUEST);
+            $this->response(array('status' => FALSE, 'message' => array('main' => 'Preencha todos os dados')), REST_Controller::HTTP_BAD_REQUEST);
         if($success)
-            $this->set_response(array('message' => 'Usuário criado'), REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
-        else
-            $this->set_response(array('status' => FALSE, 'message' => 'Usuário não pôde ser criado'));
+            $this->response(array('message' => 'Usuário criado'), REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+        else {
+            $errorMsg = array();
+            if($this->usuario_model->get_users(array('idusuario'), array('email =' => $this->post('email'))))
+                $errorMsg['email'] = 'Email já existente.';
+            if($this->usuario_model->get_users(array('idusuario'), array('cpf =' => $this->post('cpf'))))
+                $errorMsg['cpf'] = 'CPF já existente.';
+            if($this->usuario_model->get_users(array('idusuario'), array('username =' => $this->post('username'))))
+                $errorMsg['username'] = 'Nome de usuário já existente.';
+            $errorMsg['main'] = 'Erro ao criar seu usuário';
+            $this->set_response(array('status' => FALSE, 'message' => $errorMsg), REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 /*
     public function users_delete()
