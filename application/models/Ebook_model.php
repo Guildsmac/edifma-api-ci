@@ -16,9 +16,9 @@ class Ebook_model extends CI_Model{
     }
 
     public function insert_ebook($data){
-        $this->book_path = $data->post('book_path');
-        $this->opf_path = $data->post('opf_path');
-        $this->icon_img_path = $data->post('icon_img_path');
+        $this->book_path = $data->book_path;
+        $this->opf_path = $data->opf_path;
+        $this->icon_img_path = $data->icon_img_path;
         $this->created_at = Date('YmdGis');
         $this->updated_at = Date('YmdGis');
 

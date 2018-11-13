@@ -24,7 +24,7 @@ class Ebook extends REST_Controller{
     public function ebooks_get(){
         $this->load->database();
         $this->load->model('ebook_model', '', true);
-        $ebooks = $this->usuario_model->get_ebooks();
+        $ebooks = $this->ebook_model->get_ebooks();
         $id = $this->get('id');
 
         if($id === NULL){
@@ -55,10 +55,12 @@ class Ebook extends REST_Controller{
     }
 
     public function ebooks_post(){
-        $success =false;
-        if($this->post('book_path') && $this->post('opf_path') && $this->post('icon_img_path')){
+        $success = false;
+        if($this->post('book_path')){
             $this->load->model('ebook_model', '', true);
-            $success = $this->ebook_model->insert_ebook($this);
+            $this->load->library('manipulador-ebooks/database_organize');
+            $data = Database_Organize::organize($this->post('book_path'));
+            $success = $this->ebook_model->insert_ebook($data);
         }else
             $this->response(array('status' => FALSE, 'message' => 'Preencha todos os dados'));
         if($success)
