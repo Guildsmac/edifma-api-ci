@@ -1,0 +1,3 @@
+[submodule "application/libraries/application/libraries/Manipulador-Ebooks"]
+	path = application/libraries/application/libraries/Manipulador-Ebooks
+	url = https://github.com/Guildsmac/Manipulador-Ebooks
