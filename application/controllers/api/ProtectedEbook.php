@@ -55,9 +55,10 @@ class ProtectedEbook extends REST_Controller
 
     public function protected_ebooks_post() {
         $success = false;
-        if($this->post('usuario_idusuario') && $this->post('e_book_ide_book') && $this->post('e_book_path')){
+        if($this->post('usuario_idusuario') && $this->post('e_book_ide_book')){
             $this->load->model('protectedebook_model', '', true);
             $success = $this->protectedebook_model->insert_protected_ebook($this);
+            $this->response($success);
 
         }else
             $this->response(array('status' => FALSE,'message' => 'Preencha todos os dados'), REST_Controller::HTTP_BAD_REQUEST);
