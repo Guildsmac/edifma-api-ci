@@ -25,28 +25,45 @@ class ProtectedEbook_model extends CI_Model {
         $this->usuario_idusuario = $data->post('usuario_idusuario');
         $this->e_book_ide_book = $data->post('e_book_ide_book');
         //$this->e_book_path = $data->post('e_book_path');
-        $this->db->where('idusuario = ', $this->usuario_idusuario);
-        $userResult = $this->db->get('usuario')->result();
+        $user =& get_instance();
+        $user->load->model('usuario_model');
+        $userResult = $user->usuario_model->get_users(array('nome as Nome', 'email as Email', 'cpf as CPF'),
+                                                      array('idusuario =' => $this->usuario_idusuario));
+        $userResult = $userResult[0];
+
         if(empty($userResult)) return false;
-        $this->db->where('ide_book = ', $this->e_book_ide_book);
-        $ebookResult = $this->db->get('e_book')->result();
+        $ebook =& get_instance();
+        $ebook->load->model('ebook_model');
+        $ebookResult = $ebook->ebook_model->get_ebooks(array('ide_book', 'book_path'), array('ide_book =' => $this->e_book_ide_book));
+        $ebookResult = $ebookResult[0];
         if(empty($ebookResult)) return false;
         $result = $this->get_protected_ebooks(array('e_book_path'), array('usuario_idusuario =' => $this->usuario_idusuario, 'e_book_ide_book =' => $this->e_book_ide_book));
         if(!empty($result))
-            return $result;
+            return $result[0];
 
-        /**
-         *
-         *
-        /*USAR A CLASSE MANIPULADOR EBOOKS PRA INSERIR O DRM E SALVAR ENTAO RETORNAR O ENDEREÇO DO LIVRO GERADO
-         *
-         *
-        **/
+        $this->load->library('manipulador-ebooks/FolderManipulator');
+        $this->load->library('manipulador-ebooks/Zipper');
+        $this->load->library('manipulador-ebooks/DRMInserter');
+
+        $pathToExtractedeBooks = FCPATH . 'application\\storage\\generated_unzipped_eBooks';
+        if(!file_exists($pathToExtractedeBooks)) mkdir($pathToExtractedeBooks, 0777);
+        $pathToFinaleBooks = FCPATH . 'application\\storage\\protected_eBooks';
+        if(!file_exists($pathToFinaleBooks)) mkdir($pathToFinaleBooks, 0777);
+
+        $unzippedFolder = FolderManipulator::getNewFolder($pathToExtractedeBooks, 'ebook');
+        Zipper::unzip($ebookResult->book_path, $unzippedFolder);
+
+        DRMInserter::insertDRM($unzippedFolder, $userResult);
+        $newBookFolder = FolderManipulator::getNewFolder($pathToFinaleBooks, 'ebook');
+        Zipper::zipFolder($unzippedFolder, basename($ebookResult->book_path), $newBookFolder);
+
+        $pathToBook = NameManipulator::invertSlashes($newBookFolder);
+        $this->e_book_path = $pathToBook;
 
         $this->created_at = Date('YmdGis');
         $this->updated_at = Date('YmdGis');
         if($this->db->insert('protected_e_book', $this))
-            return true;
+            return array("e_book_path" => $this->e_book_path);
         return false;
     }
 }
