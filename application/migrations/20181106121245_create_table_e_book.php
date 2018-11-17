@@ -33,7 +33,8 @@ class Migration_create_table_e_book extends CI_Migration {
             ),
             'icon_img_path'  => array(
                 'type' => 'VARCHAR(255)',
-                'unique' => TRUE
+                'unique' => TRUE,
+                'null' => TRUE
             ),
             'created_at' => array(
                 'type' => 'DATETIME',
