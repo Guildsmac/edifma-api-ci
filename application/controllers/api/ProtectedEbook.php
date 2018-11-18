@@ -24,8 +24,8 @@ class ProtectedEbook extends REST_Controller
 
     public function protected_ebooks_get(){
         $this->load->database();
-        $this->load->model('protectedebook_model', '', true);
-        $protected_ebooks = $this->protectedebook_model->get_protected_ebooks();
+        $this->load->model('ProtectedEbook_model', '', true);
+        $protected_ebooks = $this->ProtectedEbook_model->get_protected_ebooks();
         $id = $this->get('id');
         if($id===NULL){
             if($protected_ebooks)
@@ -56,8 +56,8 @@ class ProtectedEbook extends REST_Controller
     public function protected_ebooks_post() {
         $success = false;
         if($this->post('usuario_idusuario') && $this->post('e_book_ide_book')){
-            $this->load->model('protectedebook_model', '', true);
-            $success = $this->protectedebook_model->insert_protected_ebook($this);
+            $this->load->model('ProtectedEbook_model', '', true);
+            $success = $this->ProtectedEbook_model->insert_protected_ebook($this);
             $this->response($success);
 
         }else

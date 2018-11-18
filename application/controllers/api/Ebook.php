@@ -58,8 +58,9 @@ class Ebook extends REST_Controller{
         $success = false;
         if($this->post('book_path')){
             $this->load->model('ebook_model', '', true);
-            $this->load->library('manipulador-ebooks/database_organize');
-            $data = Database_Organize::organize($this->post('book_path'));
+            echo 'kappa';
+            $this->load->library('Manipulador-Ebooks/DatabaseOrganize');
+            $data = DatabaseOrganize::organize($this->post('book_path'));
             $success = $this->ebook_model->insert_ebook($data);
         }else
             $this->response(array('status' => FALSE, 'message' => 'Preencha todos os dados'));

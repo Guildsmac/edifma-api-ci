@@ -41,20 +41,21 @@ class ProtectedEbook_model extends CI_Model {
         if(!empty($result))
             return $result[0];
 
-        $this->load->library('manipulador-ebooks/FolderManipulator');
-        $this->load->library('manipulador-ebooks/Zipper');
-        $this->load->library('manipulador-ebooks/DRMInserter');
+        $this->load->library('Manipulador-Ebooks/FolderManipulator');
+        $this->load->library('Manipulador-Ebooks/Zipper');
+        $this->load->library('Manipulador-Ebooks/DRMInserter');
+        $this->load->library('Manipulador-Ebooks/NameManipulator');
 
-        $pathToExtractedeBooks = FCPATH . 'application\\storage\\generated_unzipped_eBooks';
+        $pathToExtractedeBooks = NameManipulator::normalizePath(FCPATH . 'application/storage/generated_unzipped_eBooks');
         if(!file_exists($pathToExtractedeBooks)) mkdir($pathToExtractedeBooks, 0777);
-        $pathToFinaleBooks = FCPATH . 'application\\storage\\protected_eBooks';
+        $pathToFinaleBooks = NameManipulator::normalizePath(FCPATH . 'application/storage/protected_eBooks');
         if(!file_exists($pathToFinaleBooks)) mkdir($pathToFinaleBooks, 0777);
 
-        $unzippedFolder = FolderManipulator::getNewFolder($pathToExtractedeBooks, 'ebook');
+        $unzippedFolder = NameManipulator::normalizePath(FolderManipulator::getNewFolder($pathToExtractedeBooks, 'ebook'));
         Zipper::unzip($ebookResult->book_path, $unzippedFolder);
 
         DRMInserter::insertDRM($unzippedFolder, $userResult);
-        $newBookFolder = FolderManipulator::getNewFolder($pathToFinaleBooks, 'ebook');
+        $newBookFolder = NameManipulator::normalizePath(FolderManipulator::getNewFolder($pathToFinaleBooks, 'ebook'));
         Zipper::zipFolder($unzippedFolder, basename($ebookResult->book_path), $newBookFolder);
 
         $pathToBook = NameManipulator::invertSlashes($newBookFolder);
