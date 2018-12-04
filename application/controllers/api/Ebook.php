@@ -17,8 +17,34 @@ class Ebook extends REST_Controller{
         // Configure limits on our controller methods
         // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
         $this->methods['ebooks_get']['limit'] = 500; // 500 requests per hour per user/key
+        $this->methods['ebooksinformation_get']['limit'] = 500; // 500 requests per hour per user/key
         $this->methods['ebooks_post']['limit'] = 100; // 100 requests per hour per user/key
         $this->methods['ebooks_delete']['limit'] = 50; // 50 requests per hour per user/key
+    }
+
+    public function ebooksinformation_get(){
+        $this->load->database();
+        $this->load->model('ebook_model', '', true);
+        $this->load->library('Manipulador-Ebooks/BookInformations');
+        $ebooks = $this->ebook_model->get_ebooks();
+        $booksInformations = array();
+
+        if(empty($ebooks) | !$ebooks)
+            $this->response(array(
+                'status' => FALSE,
+                'message' => 'Não foram encontrados ebooks'
+            ), REST_Controller::HTTP_NOT_REQUEST);
+
+        foreach($ebooks as $i)
+            array_push($booksInformations, BookInformations::getInformations($i->opf_path));
+
+        if(!empty($booksInformations) && $booksInformations)
+            $this->response($booksInformations, REST_Controller::HTTP_OK);
+        $this->response(array(
+            'status' => FALSE,
+            'message' => 'Erro desconhecido'
+        ), REST_Controller::HTTP_BAD_REQUEST);
+
     }
 
     public function ebooks_get(){
@@ -33,7 +59,7 @@ class Ebook extends REST_Controller{
             else
                 $this->set_response(array(
                     'status' => FALSE,
-                    'message' => 'Não foram achados ebooks'
+                    'message' => 'Não foram encontrados ebooks'
                 ), REST_Controller::HTTP_NOT_FOUND);
         }
 
@@ -44,15 +70,17 @@ class Ebook extends REST_Controller{
         if(!empty($ebooks))
             foreach($ebooks as $key => $value)
                 if(isset($value->ide_book) && $value->ide_book == $id)
-                    $user = $value;
-        if(!empty($user))
-            $this->set_response($user, REST_Controller::HTTP_OK);
+                    $ebook = $value;
+        if(!empty($ebook))
+            $this->set_response($ebook, REST_Controller::HTTP_OK);
         else
             $this->set_response(array(
                 'status' => FALSE,
                 'message' => 'eBook não pôde ser achado'
             ), REST_Controller::HTTP_NOT_FOUND);
     }
+    
+    
 
     public function ebooks_post(){
         $success = false;
