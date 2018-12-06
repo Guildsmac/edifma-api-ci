@@ -35,8 +35,16 @@ class Ebook extends REST_Controller{
                 'message' => 'Não foram encontrados ebooks'
             ), REST_Controller::HTTP_NOT_REQUEST);
 
-        foreach($ebooks as $i)
+        $count = 0;
+        foreach($ebooks as $i) {
             array_push($booksInformations, BookInformations::getInformations($i->opf_path));
+            $path = '';
+            if(strlen($i->icon_img_path)!=0)
+                $path = $_SERVER['SERVER_ADDR'] . substr($i->icon_img_path, strlen($_SERVER['DOCUMENT_ROOT']), strlen($i->icon_img_path));
+            $booksInformations[$count]['icon_img_path'] = $path;
+            $booksInformations[$count]['ide_book'] = $i->ide_book;
+            $count++;
+        }
 
         if(!empty($booksInformations) && $booksInformations)
             $this->response($booksInformations, REST_Controller::HTTP_OK);
