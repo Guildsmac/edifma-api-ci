@@ -61,11 +61,11 @@ class ProtectedEbook extends REST_Controller
             $this->response($success);
 
         }else
-            $this->response(array('status' => FALSE,'message' => 'Preencha todos os dados'), REST_Controller::HTTP_BAD_REQUEST);
+            $this->response(array('status' => FALSE,'message' => 'Erro ao criar livro. Tente novamente mais tarde'), REST_Controller::HTTP_NOT_FOUND);
         if($success)
             $this->set_response(array('message' => 'Livro protegido criado'));
         else
-            $this->set_response(array('status' => FALSE, 'message' => 'Livro protegido não pôde ser criado'));
+            $this->set_response(array('status' => FALSE, 'message' => 'Livro não pôde ser criado. Tente novamente mais tarde'), REST_Controller::HTTP_NOT_FOUND);
 
     }
 
