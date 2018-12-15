@@ -44,8 +44,9 @@ class ProtectedEbook extends REST_Controller
             foreach($protected_ebooks as $key => $value)
                 if(isset($value->id_protected_e_book) && $value->id_protected_e_book == $id)
                     $protected_ebook = $value;
-        if(!empty($protected_ebook))
+        if(!empty($protected_ebook)) {
             $this->set_response($protected_ebook, REST_Controller::HTTP_OK);
+        }
         else
             $this->set_response(array(
                 'status' => FALSE,
@@ -58,7 +59,10 @@ class ProtectedEbook extends REST_Controller
         if($this->post('usuario_idusuario') && $this->post('e_book_ide_book')){
             $this->load->model('ProtectedEbook_model', '', true);
             $success = $this->ProtectedEbook_model->insert_protected_ebook($this);
-            $this->response($success);
+            $temp = explode('/', $_SERVER['REQUEST_URI']);
+            $temp = $temp[1];
+            $success = 'http://'.$_SERVER['HTTP_HOST'] . substr($success, strlen($temp), strlen($success));
+            $this->response(array('status' => TRUE, 'message' => array('downloadable_path' => $success, 'filename' => basename($success))));
 
         }else
             $this->response(array('status' => FALSE,'message' => 'Erro ao criar livro. Tente novamente mais tarde'), REST_Controller::HTTP_NOT_FOUND);

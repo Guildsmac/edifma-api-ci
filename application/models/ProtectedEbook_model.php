@@ -39,7 +39,7 @@ class ProtectedEbook_model extends CI_Model {
         if(empty($ebookResult)) return false;
         $result = $this->get_protected_ebooks(array('e_book_path'), array('usuario_idusuario =' => $this->usuario_idusuario, 'e_book_ide_book =' => $this->e_book_ide_book));
         if(!empty($result))
-            return $result[0];
+            return $result[0]->e_book_path . '/' . basename($ebookResult->book_path);
 
         $this->load->library('Manipulador-Ebooks/FolderManipulator');
         $this->load->library('Manipulador-Ebooks/Zipper');
@@ -64,7 +64,7 @@ class ProtectedEbook_model extends CI_Model {
         $this->created_at = Date('YmdGis');
         $this->updated_at = Date('YmdGis');
         if($this->db->insert('protected_e_book', $this))
-            return array("e_book_path" => $this->e_book_path);
+            return $this->e_book_path . '/' . basename($ebookResult->book_path);
         return false;
     }
 }
