@@ -1,4 +1,12 @@
 <?php
+/**
+ * Copyright (c) 2019.
+ * Developed by Gabriel Sousa
+ * @author Gabriel Sousa <gabrielssc.ti@gmail.com>
+ * Last modified 09/11/18 08:15.
+ *
+ */
+
 $config['binduser'] = 'cn=Authentication,ou=Services,dc=example,dc=org';
 $config['basedn'] = 'dc=example,dc=org';
 $config['bindpw'] = 'E984asdy2';

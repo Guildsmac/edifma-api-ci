@@ -1,0 +1,119 @@
+[33mcommit 220a8f6b88e4ba805adda00a04e2651c019c3967[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Gabriel Sousa <gabrielssc.ti@gmail.com>
+Date:   Tue Dec 11 11:48:38 2018 -0300
+
+    Fixes
+
+[33mcommit dd48a409aa544a4cd6c36a2ecd1d82808f01c0aa[m
+Author: Gabriel Sousa <gabrielssc.ti@gmail.com>
+Date:   Thu Dec 6 00:35:28 2018 -0300
+
+    Fixes
+
+[33mcommit 3e3426a21dc0156cd191fb05f45dc08f3fa0d0c3[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Dec 4 11:01:26 2018 -0300
+
+    Added request for books informations
+
+[33mcommit c077b0e546f55c865d21453aad7595049840934d[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Dec 4 09:29:30 2018 -0300
+
+    ?
+
+[33mcommit 95018824285076d905de16ef21517f7205d1aa08[m
+Author: Gabriel Sousa <guildsmac@gmail.com>
+Date:   Sun Nov 18 16:55:07 2018 -0300
+
+    Fixes for Linux dist
+
+[33mcommit 85c6bf5cce4083bd0652b5a90874891a8268ef19[m
+Author: Gabriel Sousa <gabrielssc.ti@gmail.com>
+Date:   Fri Nov 16 23:09:18 2018 -0300
+
+    Fixes
+
+[33mcommit 5bc4934a69795dfa94f239f82bd3833f648181fc[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Wed Nov 14 09:41:29 2018 -0300
+
+    Fixes
+
+[33mcommit d5ddee364433538536b1878869d3b20fbceb60d0[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Nov 13 11:43:26 2018 -0300
+
+    Fixes
+
+[33mcommit 4eaedafcf88ab61e30de428d02793e3e30953a79[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Nov 13 11:10:22 2018 -0300
+
+    Test
+
+[33mcommit b2d59a38bfa0d8b2c8a74716d3be9ab76d5a60d1[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Nov 13 11:05:26 2018 -0300
+
+    Fixes
+
+[33mcommit 3d7e1c6f325350adca9e255f79146cc055827558[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Nov 13 10:24:47 2018 -0300
+
+    Added gitignore
+
+[33mcommit d052978cc9b9c45b89f083944bded61f07fdd6dd[m
+Author: Gabriel Sousa <gabrielssc.ti@gmail.com>
+Date:   Mon Nov 12 20:46:45 2018 -0300
+
+    Fixes
+
+[33mcommit edd35f9af521305fe5343bf4d496c644e7256431[m
+Author: Gabriel Sousa <gabrielssc.ti@gmail.com>
+Date:   Fri Nov 9 09:32:13 2018 -0300
+
+    Changes
+
+[33mcommit 41181279c682b291702ea912e6c327446ab12478[m
+Author: Gabriel Sousa <gabrielssc.ti@gmail.com>
+Date:   Fri Nov 9 09:21:11 2018 -0300
+
+    External db
+
+[33mcommit a8d56b38293258b9626ee213956421712016c2e7[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Wed Nov 7 11:59:37 2018 -0300
+
+    Classe Auth terminado
+
+[33mcommit c23b8635288691e9872bcba025ad2832474fa2a0[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Wed Nov 7 10:07:41 2018 -0300
+
+    Fixes
+
+[33mcommit 1d5990a2415d197ce4a36cb466b89266408e8c32[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Wed Nov 7 09:33:37 2018 -0300
+
+    Added Keys and Logs Migrations
+
+[33mcommit a7e8b4371781ddbd6835573b5ae416cddcf00eb2[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Wed Nov 7 08:49:21 2018 -0300
+
+    Added all models and controllers
+
+[33mcommit a9a84409aebbeaa14c6193bce06566c6cb987d6d[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Nov 6 11:51:52 2018 -0300
+
+    Fixes
+
+[33mcommit ac4e49210e7e13156c17dbaf096e0b33a98711bd[m
+Author: Gabriel Sousa Silva Costa <gabriel.costa@acad.ifma.edu.br>
+Date:   Tue Nov 6 11:18:07 2018 -0300
+
+    First commit

@@ -1,4 +1,12 @@
 <?php
+/**
+ * Copyright (c) 2019.
+ * Developed by Gabriel Sousa
+ * @author Gabriel Sousa <gabrielssc.ti@gmail.com>
+ * Last modified 05/12/18 22:38.
+ *
+ */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*

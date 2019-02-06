@@ -1,5 +1,13 @@
 <?php
 /**
+ * Copyright (c) 2019.
+ * Developed by Gabriel Sousa
+ * @author Gabriel Sousa <gabrielssc.ti@gmail.com>
+ * Last modified 15/12/18 15:47.
+ *
+ */
+
+/**
  * Created by PhpStorm.
  * User: luisclaudio
  * Date: 07/11/2018

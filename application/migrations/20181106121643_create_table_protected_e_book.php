@@ -1,6 +1,10 @@
 <?php
 /**
- * @author   Natan Felles <natanfelles@gmail.com>
+ * Copyright (c) 2019.
+ * Developed by Gabriel Sousa
+ * @author Gabriel Sousa <gabrielssc.ti@gmail.com>
+ * Last modified 06/02/19 10:56.
+ *
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 

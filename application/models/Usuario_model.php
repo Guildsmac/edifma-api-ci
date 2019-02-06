@@ -1,4 +1,11 @@
 <?php
+/**
+ * Copyright (c) 2019.
+ * Developed by Gabriel Sousa
+ * @author Gabriel Sousa <gabrielssc.ti@gmail.com>
+ * Last modified 12/11/18 18:29.
+ *
+ */
 
 class Usuario_model extends CI_Model{
     public $nome;
