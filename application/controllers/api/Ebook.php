@@ -49,6 +49,20 @@ class Ebook extends REST_Controller{
             $path = '';
             if(strlen($i->icon_img_path)!=0)
                 $path = $_SERVER['SERVER_ADDR'] . substr($i->icon_img_path, strlen($_SERVER['DOCUMENT_ROOT']), strlen($i->icon_img_path));
+            $booksInformations[$count]['isAvailable'] = true;
+            if($i->is_pago){
+                $booksInformations[$count]['isAvailable'] = false;
+
+                $this->db->where('usuario_idusuario', $this->get('idusuario'));
+                $this->db->where('e_book_ide_book', $i->ide_book);
+                $e_books_pago = $this->db->get('e_book_pago')->result();
+
+                if(sizeof($e_books_pago)>0) {
+                    $booksInformations[$count]['isAvailable'] = true;
+                }
+
+            }
+
             $booksInformations[$count]['icon_img_path'] = $path;
             $booksInformations[$count]['ide_book'] = $i->ide_book;
             $count++;
